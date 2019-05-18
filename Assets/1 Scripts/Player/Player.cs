@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Player : EntityBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [HideInInspector]
+    public PlayerMovement Movement;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

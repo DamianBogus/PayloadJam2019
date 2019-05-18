@@ -11,7 +11,7 @@ public class TridentInstance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movdir = (gameObject.transform.position -  Endpoint)*-1;
+ 
     }
 
     // Update is called once per frame

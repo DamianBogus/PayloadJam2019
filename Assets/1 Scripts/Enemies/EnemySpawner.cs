@@ -27,7 +27,12 @@ public class EnemySpawner : MonoBehaviour
         if (Random.value > 0.5f) randomPos = leftSpawn.position;
         else randomPos = rightSpawn.position;
 
-        GameObject enemy = Instantiate(crawler);
+
+        GameObject enemy;
+
+        if (Random.value > 0.5f) enemy = Instantiate(crawler);
+        else enemy = Instantiate(fly);
+
         enemy.transform.position = randomPos;
         enemy.GetComponent<Enemy>().Init(player);
     }

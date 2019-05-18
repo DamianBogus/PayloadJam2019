@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,6 +11,7 @@ public class EntityBase : MonoBehaviour
     public bool IsGrounded;
     public Transform GroundCheckPoint;
 
+    [NonSerialized]
     public Rigidbody2D rb;
     private float groundDist;
 

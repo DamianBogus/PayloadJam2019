@@ -237,7 +237,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.06652725, g: 0.4552339, b: 0.6132076, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -417,7 +417,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561491344}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -534,7 +534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &677749689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,8 +547,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1055f6cd2a10f8b47a1d990a16a2c5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crawler: {fileID: 3169509839832147556, guid: fafabc2de792a694f8752fd8caaedd96, type: 3}
-  player: {fileID: 0}
+  crawler: {fileID: 5640831612318813641, guid: fc495c72d849d5a4aa9ca1b75c33d9f6, type: 3}
+  player: {fileID: 5261030056385166495}
   leftSpawn: {fileID: 1602934865}
   rightSpawn: {fileID: 1642520089}
 --- !u!4 &677749690
@@ -741,11 +741,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5261030056385166495, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
-        type: 3}
-      propertyPath: Health
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ff8caaf4309ab4aa14607493aa4f6d, type: 3}

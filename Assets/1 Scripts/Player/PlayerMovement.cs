@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Player))]
 public class PlayerMovement : MonoBehaviour
@@ -13,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float GravityMultiplier = 3;
     public bool EnableFlying = true;
     public bool EnableJump = true;
+
+    [NonSerialized]
+    public float CurrentHeightRatio;
 
     private bool shouldJump = false;
     private bool isFlying = false;
@@ -44,11 +48,11 @@ public class PlayerMovement : MonoBehaviour
             if (input.y != 0)
             {
                 //Scale the flying depending on the range from bottom to top.
-                float currentRatio = transform.position.y - BaseY;
-                currentRatio = currentRatio / (MaxY - BaseY);
-                currentRatio = 1 - currentRatio;
+                CurrentHeightRatio = transform.position.y - BaseY;
+                CurrentHeightRatio = CurrentHeightRatio / (MaxY - BaseY);
+                CurrentHeightRatio = 1 - CurrentHeightRatio;
 
-                input.y *= FlyRate * currentRatio;
+                input.y *= FlyRate * CurrentHeightRatio;
             }
         } 
         

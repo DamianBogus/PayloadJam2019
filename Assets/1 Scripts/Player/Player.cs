@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : EntityBase
 {
-    
+    [HideInInspector]
+    public PlayerMovement Movement;
+
 
 }

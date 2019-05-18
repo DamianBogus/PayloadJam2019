@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Fly : Enemy
 {
+    public GameObject spitPrefab;
+    private GameObject spitInstance;
+
     public override void AttackPlayer()
     {
         attackTimer += Time.deltaTime;
@@ -11,8 +14,13 @@ public class Fly : Enemy
         if (attackTimer > attackCooldown)
         {
             attackTimer = 0;
-           // rb.AddForce(Vector2.up * 100, ForceMode2D.Impulse);
-            target.Damage(DamageOutput);
+
+            Vector2 direction = transform.position - target.transform.position;
+
+            spitInstance = Instantiate(spitPrefab);
+            spitInstance.transform.position = transform.position;
+            spitInstance.GetComponent<SpitAttack>().AddForceToAttack(-direction * 20, ForceMode2D.Impulse);
+
         }
     }
 
@@ -24,6 +32,5 @@ public class Fly : Enemy
         direction.y = (transform.position.y <= pos.y) ? 1 : -1;
         Move(direction, moveSpeed);
     }
-
-
+    
 }

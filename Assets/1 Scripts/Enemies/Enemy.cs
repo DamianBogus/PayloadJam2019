@@ -30,6 +30,8 @@ public class Enemy : EntityBase
     {
         base.FixedUpdate();
 
+        if (Health <= 0) Destroy(gameObject);
+
         if (!target) return;
 
         CheckPlayerInRange();

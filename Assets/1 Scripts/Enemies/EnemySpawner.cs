@@ -24,5 +24,6 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemy = Instantiate(crawler);
         enemy.transform.position = randomPos;
+        enemy.GetComponent<Enemy>().Init(player);
     }
 }

@@ -16,15 +16,20 @@ public class Enemy : EntityBase
     public float attackTimer = 0.0f;
     public Vector2 direction = Vector2.zero;
 
+    private SpriteRenderer spriteRenderer;
     public bool Grounded = true;
 
     public void Init(Player Target)
     {
         target = Target;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     private void FixedUpdate()
     {
+        base.FixedUpdate();
+
         if (!target) return;
 
         CheckPlayerInRange();
@@ -37,6 +42,11 @@ public class Enemy : EntityBase
     private void CheckPlayerInRange()
     {
         inRange = (Vector2.Distance(target.transform.position, transform.position) <= attackRange) ? true : false;
+        direction.x = (transform.position.x <= target.transform.position.x) ? 1 : -1;
+
+        if (direction.x == 1) spriteRenderer.flipX = true;
+        else spriteRenderer.flipX = false;
+
     }
 
     public virtual void CheckGrounded()

@@ -18,8 +18,6 @@ public class HealthBar : MonoBehaviour
     private void Update()
     {
         slider.value = player.Health / maxHealth;
-
-        Debug.Log(slider.value);
     }
 
 }

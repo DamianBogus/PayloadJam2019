@@ -22,7 +22,7 @@ public class EntityBase : MonoBehaviour
 
     public void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(GroundCheckPoint.position, -Vector2.up, 0.025f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.Raycast(GroundCheckPoint.position, -Vector2.up, 0.035f, LayerMask.GetMask("Ground"));
         IsGrounded = (hit.collider != null);
     }
 
@@ -44,5 +44,11 @@ public class EntityBase : MonoBehaviour
     public virtual void Move(Vector2 direction, float multiplier = 3)
     {
         rb.AddForce(direction * multiplier, ForceMode2D.Impulse);
+    }
+
+    public void Knockback(Vector2 source, float strength)
+    {
+        rb.WakeUp();
+        rb.AddForce((transform.position - (Vector3)source).normalized * strength, ForceMode2D.Impulse);
     }
 }

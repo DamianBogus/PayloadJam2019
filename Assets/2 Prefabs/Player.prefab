@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5261030056385166492}
-  - component: {fileID: 5261030056385166493}
-  - component: {fileID: 5261030056385166490}
-  - component: {fileID: 5261030056385166491}
   - component: {fileID: 5261030056385166495}
   - component: {fileID: 5261030056385166488}
+  - component: {fileID: 5261030056385166490}
+  - component: {fileID: 5261030056385166493}
+  - component: {fileID: 5261030056385166491}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -36,6 +36,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5261030056385166495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261030056385166489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a5163cc9d65fb4da08140d8ecf3d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  GroundCheckPoint: {fileID: 5261030056614580544}
+  Movement: {fileID: 0}
+--- !u!114 &5261030056385166488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261030056385166489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f738f5ea4cc2964eb05bd40a019ec37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5261030056385166495}
+  BaseY: -7
+  MaxY: 2
+  MoveRate: 8
+  FlyRate: 3
+  JumpRate: 15
+  GravityMultiplier: 2
+  EnableFlying: 1
+  EnableJump: 1
+--- !u!50 &5261030056385166490
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261030056385166489}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 3.3
+  m_LinearDrag: 7
+  m_AngularDrag: 0
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_Interpolate: 2
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!212 &5261030056385166493
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84,27 +141,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &5261030056385166490
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5261030056385166489}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 3.5
-  m_LinearDrag: 15
-  m_AngularDrag: 0
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &5261030056385166491
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,40 +167,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 1.5766878}
   m_EdgeRadius: 0
---- !u!114 &5261030056385166495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5261030056385166489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a5163cc9d65fb4da08140d8ecf3d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 100
-  GroundCheckPoint: {fileID: 5261030056614580544}
-  Movement: {fileID: 0}
---- !u!114 &5261030056385166488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5261030056385166489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f738f5ea4cc2964eb05bd40a019ec37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 5261030056385166495}
-  BaseY: -7
-  MaxY: 2
-  MoveRate: 6
-  FlyRate: 6
-  EnableFlying: 1
-  EnableJump: 1
 --- !u!1 &5261030056614580545
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +191,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5261030056614580545}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.297, z: 0}
+  m_LocalPosition: {x: -0.008, y: -1.287, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5261030056385166492}

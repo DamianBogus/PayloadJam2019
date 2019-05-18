@@ -9,10 +9,14 @@ public class PlayerMovement : MonoBehaviour
 
     public float MoveRate = 3;
     public float FlyRate = 5;
+    public float JumpRate = 15;
+    public float GravityMultiplier = 3;
     public bool EnableFlying = true;
     public bool EnableJump = true;
 
     private bool shouldJump = false;
+    private bool isFlying = false;
+    private float originalGravityScale;
 
     public void Start()
     {
@@ -56,10 +60,20 @@ public class PlayerMovement : MonoBehaviour
         {
             shouldJump = false;
 
-            player.Move(new Vector2(0, 8));
+            player.Move(new Vector2(0, JumpRate));
         }
 
         if (!EnableJump) shouldJump = false;
+
+        //Increase gravity when we are in the air and falling.
+        if(!player.IsGrounded && player.rb.velocity.y < 0)
+        {
+            player.rb.gravityScale = 3 *GravityMultiplier;
+        }
+        else
+        {
+            player.rb.gravityScale = 3;
+        }
     }
 }
 

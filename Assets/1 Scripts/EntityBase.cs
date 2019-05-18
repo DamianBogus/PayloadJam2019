@@ -7,7 +7,7 @@ public class EntityBase : MonoBehaviour
 {
     public float Health;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     public void Start()
     {
@@ -31,6 +31,7 @@ public class EntityBase : MonoBehaviour
 
     public virtual void Move(Vector2 direction, float multiplier = 3)
     {
+        if (!rb) rb = GetComponent<Rigidbody2D>();
         rb.AddForce(direction * multiplier, ForceMode2D.Impulse);
     }
 }

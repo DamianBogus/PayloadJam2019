@@ -5,6 +5,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject crawler;
+    public GameObject fly;
+
+
+    public float spawnRate = 1.0f;
+
 
     public Player player;
     public Transform leftSpawn;
@@ -14,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("SpawnNewEnemy", 1.0f, 0.2f);
+        InvokeRepeating("SpawnNewEnemy", 1.0f, spawnRate);
     }
 
     private void SpawnNewEnemy()
@@ -24,5 +29,6 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject enemy = Instantiate(crawler);
         enemy.transform.position = randomPos;
+        enemy.GetComponent<Enemy>().Init(player);
     }
 }

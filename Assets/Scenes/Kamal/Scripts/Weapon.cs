@@ -15,12 +15,14 @@ public class Weapon : MonoBehaviour
     private bool Thrown = false;
     int layerMask = 1 << 8;
     public GameObject Tip;
+    public GameObject TestSphere;
+    public bool Collided = false;
 
 
-
+    Vector3 shootDirection;
     private Rigidbody2D rb;
-    private RaycastHit hit;
-    private Vector3 movdir;
+    Vector2 direction;
+    public GameObject Player;
     void Start()
     {
     
@@ -32,7 +34,8 @@ public class Weapon : MonoBehaviour
     {
         if (Thrown == false)
         {
-            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+      
+            direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) -Player.transform.position;
             float Angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
             rotation.y = 0;
@@ -41,34 +44,19 @@ public class Weapon : MonoBehaviour
 
 
 
-
-
-
             //throw
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-                if (hit.collider != null)
-                {
-                    hitpoint = hit.point;
-                    movdir = (hitpoint - gameObject.transform.position);
-
-                    Debug.DrawRay(transform.position, direction * 1000, Color.yellow);
-                    Debug.Log("Did Hit");
-                                gameObject.transform.parent = null;
-                    Thrown = true;
+                Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, layerMask);
+                hitpoint = hit.point;
+                Instantiate(TestSphere, hit.point, Quaternion.identity);
+                Debug.DrawRay(transform.position, direction * 1000, Color.yellow);
              
-                }
-                else
-                {
-                    Debug.DrawRay(transform.position, direction * 1000, Color.white);
-                    Debug.Log("Did not Hit");
-                }
-
-
-
-             
+                gameObject.transform.parent = null;
+                GetComponentInChildren<Rigidbody2D>().simulated = true;
+                Thrown = true;
+            
             }
 
 
@@ -83,27 +71,19 @@ public class Weapon : MonoBehaviour
 
             //follow mouse direction
         }
-        else
+        else if(Collided == false)
         {
-
-            Vector2 direction = hitpoint - gameObject.transform.position;
-            direction.Normalize();
-            //  GameObject projectile = (GameObject)Instantiate(projectilePrefab, myPos, Quaternion.identity);
-            print(Vector2.Distance(transform.position, hitpoint));
-            if (Vector2.Distance(transform.position,hitpoint) >= 1.9f)
+            if (Vector2.Distance(Tip.transform.position,hitpoint) >= 0.5f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, hitpoint, 5f * Time.deltaTime);
+                transform.Translate(Vector3.right * 10 * Time.deltaTime);
             }
+          
+
+            
  
 
         }
 
-    }
-
-   
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        //damage enemy
     }
 
 

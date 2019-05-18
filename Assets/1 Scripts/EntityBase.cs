@@ -11,7 +11,7 @@ public class EntityBase : MonoBehaviour
     public bool IsGrounded;
     public Transform GroundCheckPoint;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private float groundDist;
 
     public void Start()

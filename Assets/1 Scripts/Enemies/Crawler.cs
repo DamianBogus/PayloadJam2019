@@ -19,7 +19,6 @@ public class Crawler : Enemy
 
     public override void ChasePlayer()
     {
-        direction.x = (transform.position.x <= target.transform.position.x) ? 1 : -1;
         Move(direction, moveSpeed);
     }
 

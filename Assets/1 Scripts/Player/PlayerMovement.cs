@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float MaxY;
 
     public float MoveRate = 3;
+    public float FlyRate = 5;
     public bool EnableFlying = true;
     public bool EnableJump = true;
 
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && player.IsGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && player.IsGrounded && EnableJump)
         {
             shouldJump = true;
         }
@@ -31,29 +32,34 @@ public class PlayerMovement : MonoBehaviour
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), 0);
 
         //Flying
-        if (!player.IsGrounded)
+        if (!player.IsGrounded && EnableFlying)
         {
             //Flying input
             input.y = Input.GetAxis("Vertical") * 0.8f;
 
-            //Scale the flying depending on the range from bottom to top.
-            float currentRatio = transform.position.y - BaseY;
-            currentRatio = currentRatio / (MaxY - BaseY);
-            currentRatio = 1 - currentRatio;
+            if (input.y != 0)
+            {
+                //Scale the flying depending on the range from bottom to top.
+                float currentRatio = transform.position.y - BaseY;
+                currentRatio = currentRatio / (MaxY - BaseY);
+                currentRatio = 1 - currentRatio;
 
-            input.y *= currentRatio;
+                input.y *= FlyRate * currentRatio;
+            }
         } 
         
         //Normal moving.
         player.Move(input, MoveRate);
 
         //Jumping
-        if (shouldJump)
+        if (shouldJump && EnableJump)
         {
             shouldJump = false;
 
             player.Move(new Vector2(0, 8));
         }
+
+        if (!EnableJump) shouldJump = false;
     }
 }
 

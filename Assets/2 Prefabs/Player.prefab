@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5261030056385166495}
   BaseY: -7
-  MaxY: 2
+  MaxY: 17
   MoveRate: 8
   FlyRate: 3
   JumpRate: 15

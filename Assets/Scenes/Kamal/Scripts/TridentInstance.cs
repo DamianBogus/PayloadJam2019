@@ -18,7 +18,7 @@ public class TridentInstance : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(movdir * 5 * Time.deltaTime);
+
 
     }
     void FixedUpdate()

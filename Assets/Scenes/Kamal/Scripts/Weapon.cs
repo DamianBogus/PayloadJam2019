@@ -11,59 +11,92 @@ public class Weapon : MonoBehaviour
     private Vector3 screenPoint;
     public Animation StabAnimation;
     public GameObject TridentPrefab;
+    public Vector3 hitpoint;
+    private bool Thrown = false;
     int layerMask = 1 << 8;
+    public GameObject Tip;
+
+
+
+    private Rigidbody2D rb;
+    private RaycastHit hit;
+    private Vector3 movdir;
     void Start()
     {
+    
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
-
-
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float Angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 50 * Time.deltaTime);
-
-
-
-
-
-        //throw
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Thrown == false)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float Angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
+            rotation.y = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 50 * Time.deltaTime);
 
-            if (hit.collider != null)
+
+
+
+
+
+
+            //throw
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                Debug.DrawRay(transform.position, direction * 1000, Color.yellow);
-                Debug.Log("Did Hit");
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+                if (hit.collider != null)
+                {
+                    hitpoint = hit.point;
+                    movdir = (hitpoint - gameObject.transform.position);
+
+                    Debug.DrawRay(transform.position, direction * 1000, Color.yellow);
+                    Debug.Log("Did Hit");
+                                gameObject.transform.parent = null;
+                    Thrown = true;
+             
+                }
+                else
+                {
+                    Debug.DrawRay(transform.position, direction * 1000, Color.white);
+                    Debug.Log("Did not Hit");
+                }
+
+
+
+             
             }
-            else
+
+
+
+            //stab
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Debug.DrawRay(transform.position, direction *1000, Color.white);
-                Debug.Log("Did not Hit");
+
+                Stab();
             }
 
 
-
-            ThrowTridentInstance();
+            //follow mouse direction
         }
-
-
-
-        //stab
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        else
         {
-            
-            Stab();
+
+            Vector2 direction = hitpoint - gameObject.transform.position;
+            direction.Normalize();
+            //  GameObject projectile = (GameObject)Instantiate(projectilePrefab, myPos, Quaternion.identity);
+            print(Vector2.Distance(transform.position, hitpoint));
+            if (Vector2.Distance(transform.position,hitpoint) >= 1.9f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, hitpoint, 5f * Time.deltaTime);
+            }
+ 
+
         }
-
-
-        //follow mouse direction
 
     }
 
@@ -80,14 +113,10 @@ public class Weapon : MonoBehaviour
 
     public void ThrowTridentInstance()
     {
-        Ray mseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        GameObject TridentInstance = Instantiate(TridentPrefab, gameObject.transform);
-
-  //      TridentInstance.GetComponent<TridentInstance>().Endpoint =
-        TridentInstance.transform.parent = null;
+    
     }
 
-
+    
 
     private void Stab()
     {

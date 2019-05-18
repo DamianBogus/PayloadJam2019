@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour
     public float BasicAttackRate = 0.5f;
     void Start()
     {
-      Trident = GetComponentInChildren<Weapon>().gameObject;
+      //Trident = GetComponentInChildren<Weapon>().gameObject;
     }
 
     // Update is called once per frame

@@ -19,8 +19,8 @@ public class Fly : Enemy
 
             spitInstance = Instantiate(spitPrefab);
             spitInstance.transform.position = transform.position;
-            spitInstance.GetComponent<SpitAttack>().AddForceToAttack(-direction * 20, ForceMode2D.Impulse);
-
+            // spitInstance.GetComponent<SpitAttack>().AddForceToAttack(-direction * 5, ForceMode2D.Impulse);
+            spitInstance.GetComponent<SpitAttack>().SetTarget(target.transform);
         }
     }
 
@@ -29,8 +29,12 @@ public class Fly : Enemy
         Vector2 pos = target.transform.position;
         pos.y += 2;
 
-        direction.y = (transform.position.y <= pos.y) ? 1 : -1;
+        direction.y = (transform.position.y <= pos.y) ? 1.5f : -1;
         Move(direction, moveSpeed);
     }
-    
+    public override void CheckGrounded()
+    {
+        Grounded = true;
+    }
+
 }

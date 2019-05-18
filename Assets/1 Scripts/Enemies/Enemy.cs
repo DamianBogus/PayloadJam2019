@@ -44,7 +44,7 @@ public class Enemy : EntityBase
     private void CheckPlayerInRange()
     {
         inRange = (Vector2.Distance(target.transform.position, transform.position) <= attackRange) ? true : false;
-        direction.x = (transform.position.x <= target.transform.position.x) ? 1 : -1;
+        direction.x = (transform.position.x < target.transform.position.x) ? 1 : -1;
 
         if (direction.x == 1) spriteRenderer.flipX = true;
         else spriteRenderer.flipX = false;
@@ -53,7 +53,7 @@ public class Enemy : EntityBase
 
     public virtual void CheckGrounded()
     {
-
+        Grounded = IsGrounded;
     }
 
     public virtual void AttackPlayer()

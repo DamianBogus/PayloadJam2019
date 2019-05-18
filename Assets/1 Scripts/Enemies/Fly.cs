@@ -18,7 +18,10 @@ public class Fly : Enemy
 
     public override void ChasePlayer()
     {
-        direction.y = (transform.position.y <= target.transform.position.y) ? 1 : -1;
+        Vector2 pos = target.transform.position;
+        pos.y += 2;
+
+        direction.y = (transform.position.y <= pos.y) ? 1 : -1;
         Move(direction, moveSpeed);
     }
 

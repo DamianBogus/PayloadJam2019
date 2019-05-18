@@ -177,7 +177,7 @@ MonoBehaviour:
   DamageOutput: 0.2
   target: {fileID: 0}
   inRange: 0
-  attackRange: 0.2
+  attackRange: 3
   moveSpeed: 10.49
   attackCooldown: 1
   attackTimer: 0

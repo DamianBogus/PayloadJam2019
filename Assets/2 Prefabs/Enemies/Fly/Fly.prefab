@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7600057887271801609}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCheck Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5505441735045936169}
   - component: {fileID: 9063382848538314355}
   - component: {fileID: 4107012759645914578}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fly
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     public GameObject TridentPrefab;
     public Vector3 hitpoint;
     private bool Thrown = false;
-    int layerMask = 1 << 8;
+    int layerMask;
     public GameObject Tip;
     public GameObject TestSphere;
     public bool Collided = false;
@@ -25,8 +25,25 @@ public class Weapon : MonoBehaviour
     public GameObject Player;
     void Start()
     {
-    
+        Player = GameObject.FindGameObjectWithTag("Player");
+        layerMask = LayerMask.GetMask("Enemy", "Player");
     }
+
+ 
+
+    public void ShootTrident()
+    {
+        Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, layerMask);
+        hitpoint = hit.point;
+        Instantiate(TestSphere, hit.point, Quaternion.identity);
+        Debug.DrawRay(transform.position, direction * 1000, Color.yellow);
+
+        gameObject.transform.parent = null;
+        GetComponentInChildren<Rigidbody2D>().simulated = true;
+        Thrown = true;
+    }
+
 
 
     // Update is called once per frame
@@ -45,19 +62,7 @@ public class Weapon : MonoBehaviour
 
 
             //throw
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, layerMask);
-                hitpoint = hit.point;
-                Instantiate(TestSphere, hit.point, Quaternion.identity);
-                Debug.DrawRay(transform.position, direction * 1000, Color.yellow);
-             
-                gameObject.transform.parent = null;
-                GetComponentInChildren<Rigidbody2D>().simulated = true;
-                Thrown = true;
-            
-            }
+
 
 
 

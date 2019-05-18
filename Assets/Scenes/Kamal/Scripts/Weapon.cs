@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
     public GameObject Tip;
     public GameObject TestSphere;
     public bool Collided = false;
+    public float tridentDamage = 100 ;
 
 
     Vector3 shootDirection;
@@ -29,8 +30,16 @@ public class Weapon : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
- 
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        print("called");
+        Enemy enem = collision.gameObject.GetComponent<Enemy>();
+        if (enem)
+        {
+            enem.Damage(tridentDamage);
+        }
+    }
     public void ShootTrident()
     {
         Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -56,7 +65,7 @@ public class Weapon : MonoBehaviour
             float Angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(Angle, Vector3.forward);
             rotation.y = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 50 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 500 * Time.deltaTime);
 
 
 
@@ -75,6 +84,9 @@ public class Weapon : MonoBehaviour
 
 
             //follow mouse direction
+
+
+        
         }
         else if(Collided == false)
         {

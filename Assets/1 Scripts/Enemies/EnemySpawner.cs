@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    int enemyCount = 0;
+
     public GameObject crawler;
     public GameObject fly;
 
@@ -24,6 +26,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnNewEnemy()
     {
+        if (enemyCount > 100) return;
+
         if (Random.value > 0.5f) randomPos = leftSpawn.position;
         else randomPos = rightSpawn.position;
 
@@ -35,5 +39,16 @@ public class EnemySpawner : MonoBehaviour
 
         enemy.transform.position = randomPos;
         enemy.GetComponent<Enemy>().Init(player);
+        NewEnemy();
+    }
+
+    public void NewEnemy()
+    {
+        enemyCount++;
+    }
+
+    public void LostEnemy()
+    {
+        enemyCount--;
     }
 }

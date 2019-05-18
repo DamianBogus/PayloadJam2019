@@ -179,7 +179,7 @@ MonoBehaviour:
   inRange: 0
   attackRange: 3
   moveSpeed: 2
-  attackCooldown: 1
+  attackCooldown: 4.03
   attackTimer: 0
   direction: {x: 0, y: 0}
   Grounded: 1

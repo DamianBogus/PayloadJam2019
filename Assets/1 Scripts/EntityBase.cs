@@ -29,7 +29,7 @@ public class EntityBase : MonoBehaviour
     public virtual void Damage(float damage)
     {
         Health -= damage;
-        if(Health > 0)
+        if(Health < 0)
         {
             Health = 0;
             Die();

@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     public GameObject TridentPrefab;
     public Vector3 hitpoint;
     private bool Thrown = false;
-    int layerMask;
+    public LayerMask mask;
     public GameObject Tip;
     public GameObject TestSphere;
     public bool Collided = false;
@@ -25,8 +25,8 @@ public class Weapon : MonoBehaviour
     public GameObject Player;
     void Start()
     {
+       // mask = ~(1 << 10);
         Player = GameObject.FindGameObjectWithTag("Player");
-        layerMask = LayerMask.GetMask("Enemy", "Player");
     }
 
  
@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
     public void ShootTrident()
     {
         Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, Mathf.Infinity, mask);
         hitpoint = hit.point;
         Instantiate(TestSphere, hit.point, Quaternion.identity);
         Debug.DrawRay(transform.position, direction * 1000, Color.yellow);

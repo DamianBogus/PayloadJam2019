@@ -7,8 +7,10 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     private GameObject Trident;
     public float BasicAttackRate = 0.5f;
+ //   public static LayerMask layermask;
     void Start()
     {
+
       Trident = GetComponentInChildren<Weapon>().gameObject;
     }
 

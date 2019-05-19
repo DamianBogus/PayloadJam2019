@@ -20,7 +20,7 @@ public class EntityBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         RaycastHit2D hit = Physics2D.Raycast(GroundCheckPoint.position, -Vector2.up, 0.035f, LayerMask.GetMask("Ground"));
         IsGrounded = (hit.collider != null);

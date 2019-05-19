@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Crawler : Enemy
 {
-
     public override void AttackPlayer()
     {
         attackTimer += Time.deltaTime;

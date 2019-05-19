@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5505441735045936169}
   - component: {fileID: 9063382848538314355}
   - component: {fileID: 4107012759645914578}
+  - component: {fileID: 6955863947147485573}
   m_Layer: 10
   m_Name: Fly
   m_TagString: Untagged
@@ -185,3 +186,22 @@ MonoBehaviour:
   Grounded: 1
   spitPrefab: {fileID: 1058270370470728152, guid: 697e12ba14758a24aa00b37d2da24c7d,
     type: 3}
+--- !u!95 &6955863947147485573
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5640831612318813641}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ea2eb7fefaf6594586342accb1c138c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -39,7 +39,6 @@ public class Weapon : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("called");
         Enemy enem = collision.gameObject.GetComponent<Enemy>();
         if (enem)
         {

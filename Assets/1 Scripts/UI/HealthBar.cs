@@ -12,6 +12,8 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        if (player == null) player = FindObjectOfType<Player>();
+
         maxHealth = player.Health;
     }
 

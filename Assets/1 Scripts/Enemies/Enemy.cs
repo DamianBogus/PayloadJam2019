@@ -17,7 +17,14 @@ public class Enemy : EntityBase
     public Vector2 direction = Vector2.zero;
 
     private SpriteRenderer spriteRenderer;
+    private Animator anim;
     public bool Grounded = true;
+
+    public void Start()
+    {
+        base.Start();
+        anim = GetComponent<Animator>();
+    }
 
     public void Init(Player Target)
     {
@@ -29,8 +36,6 @@ public class Enemy : EntityBase
     private void FixedUpdate()
     {
         base.FixedUpdate();
-
-        if (Health <= 0) Destroy(gameObject);
 
         if (!target) return;
 
@@ -66,4 +71,24 @@ public class Enemy : EntityBase
 
     }
 
+    public override void Damage(float damage)
+    {
+        base.Damage(damage);
+
+        anim.SetTrigger("Damaged");
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        anim.SetTrigger("Die");
+
+        Invoke("DestroyDeath", 1.1f);
+    }
+
+    private void DestroyDeath()
+    {
+        Destroy(gameObject);
+    }
 }

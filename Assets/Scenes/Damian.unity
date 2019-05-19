@@ -656,6 +656,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4657893801890226566, guid: 27a33cd626b979c45b654cbfe989fe01,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657893801890226566, guid: 27a33cd626b979c45b654cbfe989fe01,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27a33cd626b979c45b654cbfe989fe01, type: 3}
 --- !u!1001 &595434670
@@ -996,14 +1006,14 @@ PrefabInstance:
       propertyPath: mask.m_Bits
       value: 6711
       objectReference: {fileID: 0}
-    - target: {fileID: 246364700, guid: 30ff8caaf4309ab4aa14607493aa4f6d, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d4de03a06ac90ba4eb9ddb038cfde617, type: 2}
     - target: {fileID: 1229170034, guid: 30ff8caaf4309ab4aa14607493aa4f6d, type: 3}
       propertyPath: m_Name
       value: angelwings
       objectReference: {fileID: 0}
+    - target: {fileID: 246364700, guid: 30ff8caaf4309ab4aa14607493aa4f6d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d4de03a06ac90ba4eb9ddb038cfde617, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ff8caaf4309ab4aa14607493aa4f6d, type: 3}
 --- !u!1001 &1293802148

@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Enemy : EntityBase
 {
-    public float DamageOutput = 2.0f;
+    public static float DamageScale = 1f;
+
+    public float DamageOutput = 3.0f;
     public Player target;
     public bool inRange = false;
     public float attackRange = 0.2f;

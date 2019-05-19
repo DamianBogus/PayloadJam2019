@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
     private void LateUpdate()
     {
         slider.value = player.Health / maxHealth;
-        HealthText.text = player.Health.ToString();
+        HealthText.text = string.Format("{0:0.00}", player.Health.ToString());
     }
 
 }

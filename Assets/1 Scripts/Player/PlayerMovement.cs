@@ -12,7 +12,12 @@ public class PlayerMovement : MonoBehaviour
     public float FlyRate = 5;
     public float JumpRate = 15;
     public float GravityMultiplier = 3;
+    public float FlyingMeter = 100;
+    public float FlyingMeterMax = 100;
+    public float FlyDrainRate = 8;
+    public float FlyRecoverRate = 4;
     public bool EnableFlying = true;
+    public bool EnableFlyingMeter = false;
     public bool EnableJump = true;
 
     [NonSerialized]
@@ -25,6 +30,16 @@ public class PlayerMovement : MonoBehaviour
     public void Start()
     {
         if (!player) player = GetComponent<Player>();
+
+        player.Killcounter.OnThresholdsPassed += ThresholdPass;
+    }
+
+    private void ThresholdPass(int count)
+    {
+        if(count == 1)
+        {
+            EnableFlyingMeter = true;
+        }
     }
 
     public void Update()
@@ -40,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), 0);
 
         //Flying
-        if (!player.IsGrounded && EnableFlying)
+        //Only fly if we have enough flying meter if its enabled.
+        if (!player.IsGrounded && EnableFlying && (!EnableFlyingMeter || FlyingMeter != 0))
         {
             //Flying input
             input.y = Input.GetAxis("Vertical") * 0.8f;
@@ -53,9 +69,28 @@ public class PlayerMovement : MonoBehaviour
                 CurrentHeightRatio = 1 - CurrentHeightRatio;
 
                 input.y *= FlyRate * CurrentHeightRatio;
+
+                isFlying = true;
             }
-        } 
-        
+            else isFlying = false;
+        }
+
+        if (EnableFlyingMeter)
+        {
+            //Drain if we are flying.
+            if (isFlying && FlyingMeter != 0)
+            {
+                FlyingMeter -= FlyDrainRate * Time.fixedDeltaTime;
+                if (FlyingMeter < 0) FlyingMeter = 0;
+            }
+            else if (FlyingMeter != FlyingMeterMax)
+            {
+                FlyingMeter += FlyRecoverRate * Time.fixedDeltaTime;
+                if (FlyingMeter > FlyingMeterMax) FlyingMeter = FlyingMeterMax;
+            }
+
+        }
+
         //Normal moving.
         player.Move(input, MoveRate);
 

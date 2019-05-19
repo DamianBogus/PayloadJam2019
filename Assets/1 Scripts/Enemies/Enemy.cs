@@ -84,6 +84,9 @@ public class Enemy : EntityBase
 
         anim.SetTrigger("Die");
 
+        //Increase kill count.
+        target.Killcounter.Kills++;
+
         Invoke("DestroyDeath", 1.1f);
     }
 

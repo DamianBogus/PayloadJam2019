@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2901655731330303577}
   - component: {fileID: 2901655731330303583}
   - component: {fileID: 2901655731330303580}
+  - component: {fileID: 4623204979574293985}
   m_Layer: 8
   m_Name: object
   m_TagString: Untagged
@@ -76,7 +77,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.07152319, y: 3.5498621}
@@ -177,6 +178,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4623204979574293985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901655731330303579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fec67bd6db814b4086b48b922875137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2901655731425672029
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,8 +267,12 @@ MonoBehaviour:
   StabAnimation: {fileID: 2901655731330303577}
   TridentPrefab: {fileID: 2901655732492114242}
   hitpoint: {x: 0, y: 0, z: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 2615
   Tip: {fileID: 2901655731425672029}
   TestSphere: {fileID: 3494226519834067098, guid: e3c7ed0485c42b14886246f3e0e60cd0,
     type: 3}
   Collided: 0
+  tridentDamage: 50
   Player: {fileID: 0}

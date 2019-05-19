@@ -521,6 +521,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5261030056385166495}
   slider: {fileID: 524135434}
+--- !u!1 &594723449 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2901655732588505371, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1072854453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &594723455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594723449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fec67bd6db814b4086b48b922875137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &595434670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -622,7 +640,7 @@ MonoBehaviour:
   crawler: {fileID: 3169509839832147556, guid: fafabc2de792a694f8752fd8caaedd96, type: 3}
   fly: {fileID: 5640831612318813641, guid: fc495c72d849d5a4aa9ca1b75c33d9f6, type: 3}
   spawnRate: 1
-  player: {fileID: 0}
+  player: {fileID: 5261030056385166495}
   leftSpawn: {fileID: 1602934865}
   rightSpawn: {fileID: 1642520089}
 --- !u!4 &677749690
@@ -889,6 +907,46 @@ PrefabInstance:
         type: 3}
       propertyPath: mask.m_Bits
       value: 2615
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505374, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505374, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505372, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505372, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505372, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505372, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505372, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655732588505372, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ff8caaf4309ab4aa14607493aa4f6d, type: 3}

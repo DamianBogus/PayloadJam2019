@@ -32,6 +32,6 @@ public class WeaponController : MonoBehaviour
 
     public void SpawnNewTrident()
     {
-        Instantiate(Trident, gameObject.transform.position, Quaternion.identity).transform.parent = gameObject.transform;
+        Instantiate(Trident, gameObject.transform.position - new Vector3(-0.4f,0.89f,0), Quaternion.identity).transform.parent = gameObject.transform;
     }
 }

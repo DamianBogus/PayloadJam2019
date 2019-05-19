@@ -5,19 +5,20 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-
     public Player player;
     public Slider slider;
-    private  float maxHealth;
+    public Text HealthText;
+    private float maxHealth;
 
     private void Start()
     {
         maxHealth = player.Health;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         slider.value = player.Health / maxHealth;
+        HealthText.text = player.Health.ToString();
     }
 
 }

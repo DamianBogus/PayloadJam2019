@@ -7,15 +7,22 @@ public class thunderinstance : MonoBehaviour
     private float temp = 6;
     public float ThunderDamage = 100;
     private List<Enemy> EnemyList = new List<Enemy>();
+    public GameObject Particle;
     // Start is called before the first frame update
     void Start()
     {
         transform.position += new Vector3(0,10,0);
         Invoke("ToggleThunder", 0.2f);
         Invoke("ToggleThunder", 0.4f);
+        Invoke("Spawnparticle", 0.5f);
         Invoke("ToggleThunder", 0.6f);
         Invoke("Applythunder", 0.5f);
 
+    }
+
+    private void Spawnparticle()
+    {
+       // Instantiate(Particle,transform.position,Quaternion.identity);
     }
     private void ToggleThunder()
     {

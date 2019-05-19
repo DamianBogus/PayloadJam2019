@@ -30,6 +30,7 @@ public class Weapon : MonoBehaviour
     public GameObject Player;
     void Start()
     {
+        GetComponentInChildren<BoxCollider2D>().enabled = true;
         GameManager.Tridentlist.Add(gameObject);
        // mask = ~(1 << 10);
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -57,7 +58,7 @@ public class Weapon : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, Mathf.Infinity, mask);
         hitpoint = hit.point;
         Instantiate(TestSphere, hit.point, Quaternion.identity);
-
+        GetComponentInChildren<BoxCollider2D>().enabled = true;
         gameObject.transform.parent = null;
     //    GetComponentInChildren<Rigidbody2D>().simulated = true;
         Destroy(gameObject, 4);

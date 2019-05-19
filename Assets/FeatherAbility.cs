@@ -7,21 +7,26 @@ public class FeatherAbility : MonoBehaviour
     public GameObject FeatherPrefab;
     public int NumberOfFeathers = 10;
     private List<Vector3> EnemyList = new List<Vector3>();
+    private List<GameObject> FeatherList = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        SpawnFeathers();
+
+ 
     }
 
 
 
 
-    public void SpawnFeathers()
+    public void SpawnFeathers(int NumberofEnemies)
     {
-        for (int i = 0; i < NumberOfFeathers; i++)
+        for (int i = 0; i < NumberofEnemies; i++)
         {
-          GameObject feather =  Instantiate(FeatherPrefab, gameObject.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);         
+          GameObject feather =  Instantiate(FeatherPrefab, gameObject.transform.position + new Vector3(0, 0.8f, 0), Quaternion.identity);
+            FeatherList.Add(feather);
         }
+        EnemyList.Clear();
+        AssignFeathers();
 
     }
     public void DetectEnemies()
@@ -35,12 +40,24 @@ public class FeatherAbility : MonoBehaviour
                 EnemyList.Add(e);
 
             }
+    
         }
         else
         {
-            DetectEnemies();
+            DetectEnemies();//ad delay
         }
+        SpawnFeathers(EnemyList.Count);
 
+    }
+
+    public void AssignFeathers()
+    {
+        int i = 0;
+        foreach (var pos in EnemyList)
+        {
+            FeatherList[i].GetComponent<featherinstance>().Target = pos;
+            i++;
+        }
     }
 
 
@@ -49,6 +66,10 @@ public class FeatherAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            DetectEnemies();
+        }
         
     }
 }

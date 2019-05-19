@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Trident;
-    public float BasicAttackRate = 0.5f;
+    private float BasicAttackRate = 0.2f;
  //   public static LayerMask layermask;
     void Start()
     {
@@ -22,7 +22,7 @@ public class WeaponController : MonoBehaviour
             if (GetComponentInChildren<Weapon>())
             {
                 GetComponentInChildren<Weapon>().ShootTrident();
-                Invoke("SpawnNewTrident", BasicAttackRate);
+                Invoke("SpawnNewTrident", BasicAttackRate * GameManager.CooldownScaleFactor);
             }
  
 
@@ -32,6 +32,6 @@ public class WeaponController : MonoBehaviour
 
     public void SpawnNewTrident()
     {
-        Instantiate(Trident, gameObject.transform.position - new Vector3(-0.4f,0.89f,0), Quaternion.identity).transform.parent = gameObject.transform;
+        Instantiate(Trident, gameObject.transform.position + new Vector3(0f,1f,0), Quaternion.identity).transform.parent = gameObject.transform;
     }
 }

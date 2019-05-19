@@ -18,6 +18,10 @@ public class Weapon : MonoBehaviour
     public GameObject TestSphere;
     public bool Collided = false;
     public float tridentDamage = 10 ;
+    private float lastDistance = 9999;
+    private float currentdistance;
+    private Vector3 lastpos;
+    private Vector3 currentpos;
 
 
     Vector3 shootDirection;
@@ -35,7 +39,6 @@ public class Weapon : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("called");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -54,10 +57,9 @@ public class Weapon : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, Mathf.Infinity, mask);
         hitpoint = hit.point;
         Instantiate(TestSphere, hit.point, Quaternion.identity);
-        Debug.DrawRay(transform.position, direction * 1000, Color.yellow);
 
         gameObject.transform.parent = null;
-        GetComponentInChildren<Rigidbody2D>().simulated = true;
+    //    GetComponentInChildren<Rigidbody2D>().simulated = true;
         Destroy(gameObject, 4);
         Thrown = true;
     }
@@ -67,6 +69,15 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameManager.CooldownScaleFactor += 0.0001f;
+
+
+
+
+
+
+
+
         if (!Thrown)
         {
       
@@ -99,15 +110,21 @@ public class Weapon : MonoBehaviour
         }
         else if(Collided == false)
         {
-            if (Vector2.Distance(Tip.transform.position,hitpoint) >= 0.5f)
+            currentpos = gameObject.transform.position;
+            currentdistance = Vector2.Distance(Tip.transform.position, hitpoint);
+
+            if (currentdistance <= lastDistance)
             {
                 transform.Translate(Vector3.right * 50 * Time.deltaTime);
             }
             else
             {
+                gameObject.transform.position = lastpos;
+                Collided = true;
                 gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
             }
-          
+            lastpos = currentpos;
+            lastDistance = currentdistance;
 
             
  

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThunderAbility : MonoBehaviour
 {
-    public float ThunderCooldown= 1;
+    private float ThunderCooldown= 1;
     private bool oncooldown;
     public GameObject ThunderPrefab;
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class ThunderAbility : MonoBehaviour
             if (oncooldown == false)
             {
                 GetThunder();
-                Invoke("ResetCD",ThunderCooldown);
+                Invoke("ResetCD",ThunderCooldown * GameManager.CooldownScaleFactor);
             }
           
         }

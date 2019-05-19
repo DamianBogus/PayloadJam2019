@@ -26,6 +26,7 @@ public class Weapon : MonoBehaviour
     public GameObject Player;
     void Start()
     {
+        GameManager.Tridentlist.Add(gameObject);
        // mask = ~(1 << 10);
         Player = GameObject.FindGameObjectWithTag("Player");
 
@@ -58,6 +59,7 @@ public class Weapon : MonoBehaviour
 
         gameObject.transform.parent = null;
         GetComponentInChildren<Rigidbody2D>().simulated = true;
+        Destroy(gameObject, 4);
         Thrown = true;
     }
 
@@ -131,5 +133,6 @@ public class Weapon : MonoBehaviour
     public void OnDestroy()
     {
         GetComponentInChildren<TriggerForwarder>().OnTriggerEvent -= OnTriggerEnter2D;
+        GameManager.Tridentlist.Remove(gameObject);
     }
 }

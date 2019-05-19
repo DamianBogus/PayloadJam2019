@@ -21,7 +21,7 @@ public class KillCounter
     private int _kills;
     private int[] _thresholds =
     {
-        15, 25, 50, 100
+        10, 25, 50, 100
     };
 
     private int CheckThresholdsPassed(int val)

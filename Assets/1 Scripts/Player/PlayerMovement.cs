@@ -36,9 +36,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void ThresholdPass(int count)
     {
-        if(count == 1)
+        switch (count)
         {
-            EnableFlyingMeter = true;
+            case 1:
+                EnableFlyingMeter = true;
+                break;
+            case 2:
+                FlyDrainRate *= 1.5f;
+                break;
+            default:
+                break;
         }
     }
 
@@ -56,21 +63,25 @@ public class PlayerMovement : MonoBehaviour
 
         //Flying
         //Only fly if we have enough flying meter if its enabled.
-        if (!player.IsGrounded && EnableFlying && (!EnableFlyingMeter || FlyingMeter != 0))
+        if (!player.IsGrounded && EnableFlying)
         {
-            //Flying input
-            input.y = Input.GetAxis("Vertical") * 0.8f;
-
-            if (input.y != 0)
+            if (!(EnableFlyingMeter && FlyingMeter == 0))
             {
-                //Scale the flying depending on the range from bottom to top.
-                CurrentHeightRatio = transform.position.y - BaseY;
-                CurrentHeightRatio = CurrentHeightRatio / (MaxY - BaseY);
-                CurrentHeightRatio = 1 - CurrentHeightRatio;
+                //Flying input
+                input.y = Input.GetAxis("Vertical") * 0.8f;
 
-                input.y *= FlyRate * CurrentHeightRatio;
+                if (input.y != 0)
+                {
+                    //Scale the flying depending on the range from bottom to top.
+                    CurrentHeightRatio = transform.position.y - BaseY;
+                    CurrentHeightRatio = CurrentHeightRatio / (MaxY - BaseY);
+                    CurrentHeightRatio = 1 - CurrentHeightRatio;
 
-                isFlying = true;
+                    input.y *= FlyRate * CurrentHeightRatio;
+
+                    isFlying = true;
+                }
+                else isFlying = false;
             }
             else isFlying = false;
         }
@@ -83,7 +94,8 @@ public class PlayerMovement : MonoBehaviour
                 FlyingMeter -= FlyDrainRate * Time.fixedDeltaTime;
                 if (FlyingMeter < 0) FlyingMeter = 0;
             }
-            else if (FlyingMeter != FlyingMeterMax)
+            //Regain meter if we are grounded.
+            else if (FlyingMeter != FlyingMeterMax && player.IsGrounded)
             {
                 FlyingMeter += FlyRecoverRate * Time.fixedDeltaTime;
                 if (FlyingMeter > FlyingMeterMax) FlyingMeter = FlyingMeterMax;

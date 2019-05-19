@@ -24,6 +24,8 @@ public class KillCounter
         10, 25, 50, 100
     };
 
+    private int lastThreshold = 0;
+
     private int CheckThresholdsPassed(int val)
     {
         int count = 0;
@@ -31,6 +33,11 @@ public class KillCounter
         {
             if (val >= _thresholds[i]) count++;
         }
-        return count;
+        if (count > lastThreshold)
+        {
+            lastThreshold = count;
+            return count;
+        }
+        else return 0;
     }
 }

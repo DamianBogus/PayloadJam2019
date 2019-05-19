@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : EntityBase
 {
-
     public float DamageOutput = 2.0f;
     public Player target;
     public bool inRange = false;
@@ -16,9 +16,13 @@ public class Enemy : EntityBase
     public float attackTimer = 0.0f;
     public Vector2 direction = Vector2.zero;
 
+    public event Action<Enemy> OnDie;
+
     private SpriteRenderer spriteRenderer;
     private Animator anim;
     public bool Grounded = true;
+
+    private bool isDying = false;
 
     public void Start()
     {
@@ -73,6 +77,8 @@ public class Enemy : EntityBase
 
     public override void Damage(float damage)
     {
+        if (isDying) return;
+
         base.Damage(damage);
 
         anim.SetTrigger("Damaged");
@@ -80,14 +86,21 @@ public class Enemy : EntityBase
 
     public override void Die()
     {
-        base.Die();
+        if (!isDying)
+        {
+            OnDie?.Invoke(this);
 
-        anim.SetTrigger("Die");
+            base.Die();
 
-        //Increase kill count.
-        target.Killcounter.Kills++;
+            isDying = true;
 
-        Invoke("DestroyDeath", 1.1f);
+            anim.SetTrigger("Die");
+
+            //Increase kill count.
+            target.Killcounter.Kills++;
+
+            Invoke("DestroyDeath", 1.1f); 
+        }
     }
 
     private void DestroyDeath()

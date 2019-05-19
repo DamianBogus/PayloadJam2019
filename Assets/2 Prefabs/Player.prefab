@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1229170035}
   - component: {fileID: 1229170036}
   m_Layer: 0
-  m_Name: c94cf22a83e799034bd1cef7cdf59e34
+  m_Name: angelwings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 9d9acb188fb23ec4d8e4b41c96d5ddeb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d4de03a06ac90ba4eb9ddb038cfde617, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 1726941404631877067}
   - component: {fileID: 5261030056385166491}
   - component: {fileID: 1693373209}
+  - component: {fileID: 467588609}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -260,7 +261,12 @@ MonoBehaviour:
   FlyRate: 3
   JumpRate: 15
   GravityMultiplier: 2
+  FlyingMeter: 100
+  FlyingMeterMax: 100
+  FlyDrainRate: 8
+  FlyRecoverRate: 4
   EnableFlying: 1
+  EnableFlyingMeter: 0
   EnableJump: 1
 --- !u!50 &5261030056385166490
 Rigidbody2D:
@@ -319,7 +325,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 3a9d43bb0e21c464596f1b2aaa6c3b0c, type: 3}
   m_Color: {r: 0, g: 0.9374716, b: 1, a: 1}
   m_FlipX: 0
@@ -386,6 +392,21 @@ MonoBehaviour:
   ThunderCooldown: 1
   ThunderPrefab: {fileID: 3599483802273530272, guid: 39e599ba33f12d942bdf89288660e565,
     type: 3}
+--- !u!114 &467588609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261030056385166489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee06bd60d6b41f47971a78258936ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FeatherPrefab: {fileID: 3494226519834067098, guid: 7d361757bd218194c96ea7285a5f00ec,
+    type: 3}
+  NumberOfFeathers: 10
 --- !u!1 &5261030056614580545
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,12 +452,12 @@ PrefabInstance:
     - target: {fileID: 2901655732492114243, guid: 9fd3487224c1a7d4f8370d3ee6adfb55,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2901655732492114243, guid: 9fd3487224c1a7d4f8370d3ee6adfb55,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.89
       objectReference: {fileID: 0}
     - target: {fileID: 2901655732492114243, guid: 9fd3487224c1a7d4f8370d3ee6adfb55,
         type: 3}

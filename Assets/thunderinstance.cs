@@ -27,7 +27,7 @@ public class thunderinstance : MonoBehaviour
             RaycastHit2D[] Enemies = Physics2D.CircleCastAll(transform.position, 6, Vector2.zero);
             if (Enemies != null)
             {
-                foreach (var Enemy in Enemies)
+                foreach (var Enemy in Enemies)  
                 {
                     Enemy e = Enemy.collider.gameObject.GetComponent<Enemy>();
                 EnemyList.Add(e);

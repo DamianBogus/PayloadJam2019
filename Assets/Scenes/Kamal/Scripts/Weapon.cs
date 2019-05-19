@@ -101,7 +101,11 @@ public class Weapon : MonoBehaviour
         {
             if (Vector2.Distance(Tip.transform.position,hitpoint) >= 0.5f)
             {
-                transform.Translate(Vector3.right * 10 * Time.deltaTime);
+                transform.Translate(Vector3.right * 50 * Time.deltaTime);
+            }
+            else
+            {
+                gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
             }
           
 

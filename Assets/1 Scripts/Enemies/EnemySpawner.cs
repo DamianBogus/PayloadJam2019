@@ -9,9 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject crawler;
     public GameObject fly;
 
-
     public float spawnRate = 1.0f;
-
 
     public Player player;
     public Transform leftSpawn;
@@ -22,6 +20,8 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("SpawnNewEnemy", 1.0f, spawnRate);
+
+        if (player == null) player = FindObjectOfType<Player>();
     }
 
     private void SpawnNewEnemy()

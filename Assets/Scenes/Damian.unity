@@ -450,27 +450,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!1 &467588608 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5261030056385166489, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1072854453}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &467588609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467588608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee06bd60d6b41f47971a78258936ad1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FeatherPrefab: {fileID: 3494226519834067098, guid: 7d361757bd218194c96ea7285a5f00ec,
-    type: 3}
-  NumberOfFeathers: 10
 --- !u!1001 &482420668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1005,12 +984,17 @@ PrefabInstance:
     - target: {fileID: 2901655731703494147, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.89
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2901655731703494147, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901655731703494144, guid: 30ff8caaf4309ab4aa14607493aa4f6d,
+        type: 3}
+      propertyPath: mask.m_Bits
+      value: 6711
       objectReference: {fileID: 0}
     - target: {fileID: 246364700, guid: 30ff8caaf4309ab4aa14607493aa4f6d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -43695,7 +43679,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1072854453}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467588608}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a5163cc9d65fb4da08140d8ecf3d22, type: 3}

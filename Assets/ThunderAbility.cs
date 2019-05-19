@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ThunderAbility : MonoBehaviour
 {
-    public float ThunderCooldown;
+    public float ThunderCooldown= 1;
+    private bool oncooldown;
     public GameObject ThunderPrefab;
     // Start is called before the first frame update
     void Start()
@@ -17,15 +18,28 @@ public class ThunderAbility : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            foreach (GameObject Trident in GameManager.Tridentlist)
+            if (oncooldown == false)
             {
-                Vector3 pos = Trident.GetComponentInChildren<ObjectTajer>().gameObject.transform.position;
-                StrikeThunder(pos);
-                
-
+                GetThunder();
+                Invoke("ResetCD",ThunderCooldown);
             }
+          
         }
         
+    }
+    public void ResetCD()
+    {
+        oncooldown = false;
+    }
+
+    public void GetThunder()
+    {
+        oncooldown = true;
+        foreach (GameObject Trident in GameManager.Tridentlist)
+        {
+            Vector3 pos = Trident.GetComponentInChildren<ObjectTajer>().gameObject.transform.position;
+            StrikeThunder(pos);
+        }
     }
 
     public void StrikeThunder(Vector3 ThunderLocation) {

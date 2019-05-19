@@ -16,17 +16,44 @@ public class EnemySpawner : MonoBehaviour
     public Transform rightSpawn;
 
     private Vector2 randomPos;
+    private float lastSpawnTime = -9999f;
 
     private void Start()
     {
-        InvokeRepeating("SpawnNewEnemy", 1.0f, spawnRate);
-
         if (player == null) player = FindObjectOfType<Player>();
+        player.Killcounter.OnThresholdsPassed += OnThresholdPassed;
+    }
+
+    private void OnThresholdPassed(int count)
+    {
+        switch (count)
+        {
+            case 1:
+                spawnRate *= 1.2f;
+                break;
+            case 2:
+                spawnRate *= 1.5f;
+                break;
+            case 3:
+                spawnRate *= 1.8f;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void Update()
+    {
+        if(Time.time >= lastSpawnTime + spawnRate)
+        {
+            SpawnNewEnemy();
+            lastSpawnTime = Time.time;
+        }
     }
 
     private void SpawnNewEnemy()
     {
-        if (enemyCount > 100) return;
+        if (enemyCount > 150) return;
 
         if (Random.value > 0.5f) randomPos = leftSpawn.position;
         else randomPos = rightSpawn.position;
@@ -38,7 +65,10 @@ public class EnemySpawner : MonoBehaviour
         else enemy = Instantiate(fly);
 
         enemy.transform.position = randomPos;
-        enemy.GetComponent<Enemy>().Init(player);
+        Enemy enem = enemy.GetComponent<Enemy>();
+        enem.Init(player);
+        enem.OnDie += LostEnemy;
+
         NewEnemy();
     }
 
@@ -47,8 +77,10 @@ public class EnemySpawner : MonoBehaviour
         enemyCount++;
     }
 
-    public void LostEnemy()
+    public void LostEnemy(Enemy e)
     {
+        //reduce the count and unsub ourselves.
         enemyCount--;
+        e.OnDie -= LostEnemy;
     }
 }

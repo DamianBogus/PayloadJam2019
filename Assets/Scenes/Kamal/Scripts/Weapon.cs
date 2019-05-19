@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public GameObject Tip;
     public GameObject TestSphere;
     public bool Collided = false;
-    public float tridentDamage = 100 ;
+    public float tridentDamage = 10 ;
 
 
     Vector3 shootDirection;
@@ -28,18 +28,26 @@ public class Weapon : MonoBehaviour
     {
        // mask = ~(1 << 10);
         Player = GameObject.FindGameObjectWithTag("Player");
+
+        TriggerForwarder forwarder = GetComponentInChildren<TriggerForwarder>();
+        forwarder.OnTriggerEvent += OnTriggerEnter2D;
     }
-
-
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        print("called");
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         print("called");
         Enemy enem = collision.gameObject.GetComponent<Enemy>();
         if (enem)
         {
             enem.Damage(tridentDamage);
+            enem.Knockback(transform.position, 5);
+      //      GetComponentInChildren<BoxCollider2D>().enabled = false;
         }
     }
+
     public void ShootTrident()
     {
         Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -58,7 +66,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Thrown == false)
+        if (!Thrown)
         {
       
             direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) -Player.transform.position;
@@ -118,5 +126,10 @@ public class Weapon : MonoBehaviour
     private void Stab()
     {
         StabAnimation.Play();
+    }
+
+    public void OnDestroy()
+    {
+        GetComponentInChildren<TriggerForwarder>().OnTriggerEvent -= OnTriggerEnter2D;
     }
 }

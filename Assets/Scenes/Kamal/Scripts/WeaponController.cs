@@ -5,13 +5,13 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameObject Trident;
+    public GameObject Trident;
     public float BasicAttackRate = 0.5f;
  //   public static LayerMask layermask;
     void Start()
     {
 
-      Trident = GetComponentInChildren<Weapon>().gameObject;
+     // Trident = GetComponentInChildren<Weapon>().gameObject;
     }
 
     // Update is called once per frame

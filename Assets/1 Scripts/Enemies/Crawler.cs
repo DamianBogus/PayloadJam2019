@@ -12,7 +12,7 @@ public class Crawler : Enemy
         {
             attackTimer = 0;
             rb.AddForce(Vector2.up * 100, ForceMode2D.Impulse);
-            target.Damage(DamageOutput);
+            target.Damage(DamageOutput * Enemy.DamageScale);
         }
     }
 

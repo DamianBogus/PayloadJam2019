@@ -6,12 +6,6 @@ public class SpitAttack : MonoBehaviour
 {
     private float timer = 0;
     private Transform target;
-
-    //public void AddForceToAttack(Vector2 direction, ForceMode2D forceMode)
-    //{
-    //    GetComponent<Rigidbody2D>().AddForce(direction, forceMode);
-    //}
-
     
     public void SetTarget(Transform Target)
     {
@@ -39,7 +33,7 @@ public class SpitAttack : MonoBehaviour
     {
         if (collision.GetComponent<Player>())
         {
-            collision.GetComponent<Player>().Damage(0.4f);
+            collision.GetComponent<Player>().Damage(2 * Enemy.DamageScale);
             Destroy(gameObject);
         }
     }

@@ -29,13 +29,13 @@ public class EnemySpawner : MonoBehaviour
         switch (count)
         {
             case 1:
-                spawnRate *= 1.2f;
+                spawnRate *= 0.6f;
                 break;
             case 2:
-                spawnRate *= 1.5f;
+                spawnRate *= 0.6f;
                 break;
             case 3:
-                spawnRate *= 1.8f;
+                spawnRate *= 0.8f;
                 break;
             default:
                 break;

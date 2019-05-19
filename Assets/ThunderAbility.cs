@@ -7,6 +7,7 @@ public class ThunderAbility : MonoBehaviour
     private float ThunderCooldown= 1;
     private bool oncooldown;
     public GameObject ThunderPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class ThunderAbility : MonoBehaviour
             if (oncooldown == false)
             {
                 GetThunder();
+         
                 Invoke("ResetCD",ThunderCooldown * GameManager.CooldownScaleFactor);
             }
           

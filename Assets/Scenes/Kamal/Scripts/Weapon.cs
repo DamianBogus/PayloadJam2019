@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour
     private float currentdistance;
     private Vector3 lastpos;
     private Vector3 currentpos;
+  //  public AudioSource thunderaud;
 
 
     Vector3 shootDirection;
@@ -54,6 +55,8 @@ public class Weapon : MonoBehaviour
 
     public void ShootTrident()
     {
+
+        //thunderaud.Play();
         Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(Player.transform.position, mousepos - Player.transform.position, Mathf.Infinity, mask);
         hitpoint = hit.point;
